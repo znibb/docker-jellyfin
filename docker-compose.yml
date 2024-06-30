@@ -1,0 +1,29 @@
+services:
+  jellyfin:
+    image: lscr.io/linuxserver/jellyfin:latest
+    container_name: jellyfin
+    restart: unless-stopped
+    environment:
+      PUID: ${UID:?}
+      PGID: ${GID:?}
+      TZ: ${TZ:-Etc/UTC}
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.jellyfin.entrypoints=https
+      - traefik.http.routers.jellyfin.rule=Host(`jellyfin.${TRAEFIK_DOMAIN:?}`)
+      - traefik.http.routers.jellyfin.tls=true
+      - traefik.http.routers.jellyfin.tls.certresolver=cloudflare
+      - traefik.http.services.jellyfin.loadbalancer.server.port=8096
+      - traefik.http.routers.jellyfin.middlewares=authentik@file
+    networks:
+      - traefik
+    ports:
+      - 8096:8096
+    volumes:
+      - ./data:/config
+      - /mnt/nas/movies:/data/movies
+      - /mnt/nas/series:/data/series
+
+networks:
+  traefik:
+    external: true
