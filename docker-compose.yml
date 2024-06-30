@@ -19,6 +19,10 @@ services:
       - traefik
     ports:
       - 8096:8096
+    devices:
+      # VAAPI Devices
+      - /dev/dri/renderD128:/dev/dri/renderD128
+      - /dev/dri/card0:/dev/dri/card0
     volumes:
       - ./data:/config
       - /mnt/nas/movies:/data/movies
