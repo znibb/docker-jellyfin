@@ -1,2 +1,10 @@
-data/
 .env
+data/branding.xml
+data/encoding.xml
+data/logging.default.json
+data/migrations.xml
+data/network.xml
+data/system.xml
+data/data/data/
+data/data/plugins/
+data/data/root/
