@@ -64,3 +64,18 @@ Docker container for running a Jellyfin media server behind a Traefik reverse-pr
 12. Click `Save` and 
 
 When signing in to Jellyfin there should now be a button at the bottom for `Sign in with SSO`
+
+## Kodi as Jellyfin client
+Source: https://jellyfin.org/docs/general/clients/kodi/  
+
+1. Install Kodi via flatpak: `flatpak install tv.kodi.Kodi`
+2. Download the [Kodi Jellyfin repository installer](https://kodi.jellyfin.org/repository.jellyfin.kodi.zip)
+3. Open Kodi, go to the settings menu and navigate to `Add-on Browser`
+4. Click `Install from Zip File` and select the .zip-file downloaded previously (you might need to go to settings and enable `Unknown Sources` first)
+5. In the `Add-on Browser` menu select `Install from Repository`
+6. Choose `Kodi Jellyfin Add-ons->Video Add-ons->Jellyfin` and click install
+7. Go back to the main menu and you should get promted to add a server shortly, select `Manually Add Server` and enter `http://HOSTNAME:8096` where `HOSTNAME` is replaced by the locally resolved hostname for the Jellyfin server
+8. Log in with your Jellyfin credentials
+9. Select `Add-on (default)` when prompted for `Playback mode`
+10. Select which libraries to add and click `OK`
+11. Kodi will now start indexing your content
